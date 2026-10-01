@@ -56,13 +56,13 @@ const Invitation = () => {
           <div className="flex flex_it p-10 gap-5 font-bold">
             <div className="flex_it">
               <LuCalendarDays size={40} />
-              <p>Thanksgiving Service</p>
+              <p className="text-center">Thanksgiving Service</p>
             </div>
             <h2 className="text-3xl text-center">Sunday 4th October 2026</h2>
             <p className="text-2xl text-center">
               St. Donald&apos;s Catholic Church, Karu.
             </p>
-            <h2 className="md:text-center text-justify font-bold text-xl">
+            <h2 className="md:text-center text-center font-bold text-lg">
               Come as you are. Come with your prayers. Come with your love. Come
               celebrate our boy with us.
             </h2>

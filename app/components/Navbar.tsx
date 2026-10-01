@@ -80,18 +80,42 @@ const Navbar = () => {
       <div
         className={
           isMenu
-            ? "fixed right-0 top-12 w-[30%] md:hidden h-auto bg-slate-100 pl-5 py-5 ease-in duration-500"
+            ? "fixed right-0 top-12 w-50 md:hidden h-auto bg-slate-100 pl-5 py-5 ease-in duration-500"
             : "fixed right-[-100%] top-0 ease-in duration-500"
         }
       >
         <div className="flex flex-col gap-6">
-          <Link href={"/"} className="nav_btn-menu" onClick={() => setMenu()}>
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("story-section");
+              setMenu();
+            }}
+            href={"#story-section"}
+            className="nav_btn-menu"
+          >
             Our Story
           </Link>
-          <Link href={"/"} className="nav_btn-menu" onClick={() => setMenu()}>
+          <Link
+            onClick={(e) => {
+              setMenu();
+              e.preventDefault();
+              scrollToSection("invitation-section");
+            }}
+            href={"#invitation-section"}
+            className="nav_btn-menu"
+          >
             Invitation
           </Link>
-          <Link href={"/"} className="nav_btn-menu" onClick={() => setMenu()}>
+          <Link
+            onClick={(e) => {
+              setMenu();
+              e.preventDefault();
+              scrollToSection("gifting-section");
+            }}
+            href={"#gifting-section"}
+            className="nav_btn-menu"
+          >
             Gift the Chief
           </Link>
         </div>

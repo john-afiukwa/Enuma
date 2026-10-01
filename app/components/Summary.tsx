@@ -6,7 +6,7 @@ const Summary = () => {
       <HeaderCaption title="ONE YEAR OF ENUMA" className="text-center"/>
 
       <div className="flex_it mb-10">
-        <p className="text-justify md:text-center md:w-[80%] text-[18px] font-bold">
+        <p className="text-center md:text-center md:w-[80%] text-[18px] font-bold">
           Looking back, we realise that the milestone isn’t really about the
           number ONE. It’s about everything that happened before it. <br /> The
           first cry. The first smile. The first laugh. The first tooth. The
