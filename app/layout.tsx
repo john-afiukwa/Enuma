@@ -14,10 +14,26 @@ const instrument = Instrument_Sans({
   subsets: ["latin"],
 });
 
+const description =
+  "One year of tiny hands, big laughs and answered prayers. Join us to give thanks on Sunday, 4 October 2026.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://enuma-is-one.vercel.app"),
   title: "Enuma is one",
-  description:
-    "One year of tiny hands, big laughs and answered prayers. Join us to give thanks on Sunday, 4 October 2026.",
+  description,
+  openGraph: {
+    title: "Enuma is one",
+    description,
+    url: "/",
+    siteName: "Enuma is one",
+    type: "website",
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Enuma is one",
+    description,
+  },
 };
 
 export const viewport: Viewport = {
