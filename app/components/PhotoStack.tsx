@@ -3,9 +3,15 @@
 import Image, { type StaticImageData } from "next/image";
 import { useState, type CSSProperties } from "react";
 
-type Photo = { src: StaticImageData; alt: string; focus: string };
+export type Photo = {
+  src: StaticImageData;
+  alt: string;
+  focus: string;
+  caption?: string;
+};
 
-const tilts = [-3, 5, -7, 6, -1];
+const tilts = [-3, 5, -7, 6];
+const visibleDepth = tilts.length;
 
 export default function PhotoStack({ photos }: { photos: Photo[] }) {
   const [order, setOrder] = useState(() => photos.map((_, i) => i));
@@ -29,6 +35,8 @@ export default function PhotoStack({ photos }: { photos: Photo[] }) {
       {order.map((photoIndex, position) => {
         const photo = photos[photoIndex];
         const isTossed = photoIndex === tossed;
+        const depth = Math.min(position, visibleDepth - 1);
+        const showImage = position < visibleDepth || isTossed;
         return (
           <div
             key={photoIndex}
@@ -38,29 +46,34 @@ export default function PhotoStack({ photos }: { photos: Photo[] }) {
             style={
               {
                 zIndex: photos.length - position,
-                "--tilt": `${tilts[position]}deg`,
-                "--lift": `${position * 7}px`,
-                "--scale": 1 - position * 0.03,
+                "--tilt": `${tilts[depth]}deg`,
+                "--lift": `${depth * 7}px`,
+                "--scale": 1 - depth * 0.03,
               } as CSSProperties
             }
           >
             <div
-              className="fx-float fx-print-paper h-full rounded-[6px] p-2.5 shadow-[0_24px_44px_-24px_var(--shadow)]"
-              style={{ "--float-delay": `${-position * 1.4}s` } as CSSProperties}
+              className="fx-float fx-print-paper flex h-full flex-col rounded-[6px] px-2.5 pt-2.5 shadow-[0_24px_44px_-24px_var(--shadow)]"
+              style={{ "--float-delay": `${-depth * 1.4}s` } as CSSProperties}
             >
-              <div className="relative h-full overflow-hidden rounded-[3px]">
-                <Image
-                  src={photo.src}
-                  alt=""
-                  fill
-                  placeholder="blur"
-                  loading={position < 2 ? "eager" : "lazy"}
-                  fetchPriority={position === 0 ? "high" : "auto"}
-                  sizes="(min-width: 768px) 26rem, 84vw"
-                  className="photo object-cover"
-                  style={{ objectPosition: photo.focus }}
-                />
+              <div className="relative flex-1 overflow-hidden rounded-[3px] bg-[#e9dfd2]">
+                {showImage && (
+                  <Image
+                    src={photo.src}
+                    alt=""
+                    fill
+                    placeholder="blur"
+                    loading={position < 2 ? "eager" : "lazy"}
+                    fetchPriority={position === 0 ? "high" : "auto"}
+                    sizes="(min-width: 768px) 26rem, 84vw"
+                    className="photo object-cover"
+                    style={{ objectPosition: photo.focus }}
+                  />
+                )}
               </div>
+              <p className="flex h-11 shrink-0 items-center px-1 text-left font-display text-[1.15rem] italic">
+                {photo.caption}
+              </p>
             </div>
           </div>
         );
