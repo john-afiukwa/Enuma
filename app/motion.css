@@ -1,0 +1,206 @@
+.fx-print-paper {
+  background: #fbf6ee;
+  color: #4a2a26;
+}
+
+.fx-stack-card {
+  transform: rotate(var(--tilt)) translateY(var(--lift)) scale(var(--scale));
+  transition: transform 650ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fx-letter {
+    display: inline-block;
+    animation: fx-drop 900ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: calc(var(--i) * 70ms + 150ms);
+  }
+
+  .fx-breathe {
+    animation: fx-breathe 4.5s ease-in-out infinite alternate;
+  }
+
+  .fx-float {
+    animation: fx-float 7s ease-in-out infinite alternate;
+    animation-delay: var(--float-delay, 0s);
+  }
+
+  .fx-drift {
+    animation: fx-drift 18s ease-in-out infinite alternate;
+  }
+
+  .fx-toss-a {
+    animation: fx-toss-a 750ms cubic-bezier(0.3, 0.7, 0.3, 1);
+  }
+
+  .fx-toss-b {
+    animation: fx-toss-b 750ms cubic-bezier(0.3, 0.7, 0.3, 1);
+  }
+
+  .fx-bump {
+    animation: fx-bump 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @supports (animation-timeline: view()) {
+    .fx-tilt {
+      animation: fx-tilt linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+
+    .fx-quote {
+      view-timeline-name: --quote;
+    }
+
+    .fx-word {
+      animation: fx-ink linear both;
+      animation-timeline: --quote;
+      animation-range: cover calc(18% + var(--i) * 2.4%) cover
+        calc(24% + var(--i) * 2.4%);
+    }
+
+    .fx-stretch {
+      animation: fx-stretch linear both;
+      animation-timeline: view();
+      animation-range: cover 15% cover 65%;
+    }
+
+    .fx-pop {
+      animation: fx-pop linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 90%;
+    }
+
+    .fx-wave-line {
+      view-timeline-name: --wave;
+    }
+
+    .fx-wave {
+      display: inline-block;
+      animation: fx-wave linear both;
+      animation-timeline: --wave;
+      animation-range: entry calc(20% + var(--i) * 8%) entry
+        calc(60% + var(--i) * 8%);
+    }
+
+    .fx-slide-left,
+    .fx-slide-right {
+      animation: fx-slide linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+
+    .fx-slide-left {
+      --from-x: -2.5rem;
+    }
+
+    .fx-slide-right {
+      --from-x: 2.5rem;
+    }
+  }
+}
+
+@keyframes fx-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-0.45em) rotate(-10deg);
+  }
+}
+
+@keyframes fx-breathe {
+  from {
+    font-variation-settings: "SOFT" 0, "WONK" 1;
+  }
+  to {
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    letter-spacing: 0.01em;
+  }
+}
+
+@keyframes fx-float {
+  from {
+    transform: translateY(-5px) rotate(-0.7deg);
+  }
+  to {
+    transform: translateY(5px) rotate(0.7deg);
+  }
+}
+
+@keyframes fx-drift {
+  from {
+    transform: scale(1.03) translate(0, 0);
+  }
+  to {
+    transform: scale(1.12) translate(-2%, -2.5%);
+  }
+}
+
+@keyframes fx-toss-a {
+  45% {
+    transform: translate(-108%, -6%) rotate(-18deg);
+  }
+}
+
+@keyframes fx-toss-b {
+  45% {
+    transform: translate(-108%, -6%) rotate(-18deg);
+  }
+}
+
+@keyframes fx-bump {
+  40% {
+    transform: scale(1.06) rotate(-1deg);
+  }
+}
+
+@keyframes fx-tilt {
+  from {
+    transform: rotate(var(--from, -5deg)) translateY(2.5rem);
+  }
+  to {
+    transform: rotate(var(--to, 3deg)) translateY(-1.5rem);
+  }
+}
+
+@keyframes fx-ink {
+  from {
+    opacity: 0.16;
+  }
+}
+
+@keyframes fx-stretch {
+  from {
+    letter-spacing: -0.05em;
+  }
+  to {
+    letter-spacing: 0.14em;
+  }
+}
+
+@keyframes fx-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.88) rotate(-2.5deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.03) rotate(0.6deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fx-wave {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em) rotate(8deg);
+  }
+}
+
+@keyframes fx-slide {
+  from {
+    opacity: 0;
+    transform: translateX(var(--from-x));
+  }
+}

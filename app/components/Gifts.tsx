@@ -1,13 +1,16 @@
-import Image from "next/image";
+import Print from "./Print";
+import Wishlist from "./Wishlist";
+import CopyNumber from "./CopyNumber";
 import theChief from "../../public/E1.jpeg";
-import CopyButton from "./CopyButton";
 
-const wishlist = [
+const groups = [
   {
+    tab: "Mealtime",
     title: "At mealtime",
     items: ["Feeding high chair", "Lunch boxes", "Lunch bags", "Water bottles"],
   },
   {
+    tab: "Play",
     title: "Learning and play",
     items: [
       "Flash cards",
@@ -21,6 +24,7 @@ const wishlist = [
     ],
   },
   {
+    tab: "Clothes",
     title: "Clothes and shoes",
     items: [
       "Clothes, 18–24 months",
@@ -54,23 +58,16 @@ export default function Gifts() {
         </div>
       </div>
 
-      <figure className="reveal mx-auto mt-14 max-w-[24rem]">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-30px_var(--shadow)]">
-          <Image
-            src={theChief}
-            alt="Enuma in a wine velvet robe embroidered with lions, red cap and coral beads"
-            fill
-            placeholder="blur"
-            sizes="(min-width: 768px) 24rem, 88vw"
-            className="photo object-cover object-[55%_35%]"
-          />
-        </div>
-        <figcaption className="mt-3 text-center font-display text-[0.95rem] italic text-ink-soft">
-          The Chief himself.
-        </figcaption>
-      </figure>
+      <Print
+        src={theChief}
+        alt="Enuma in a wine velvet robe embroidered with lions, red cap and coral beads"
+        caption="The Chief himself."
+        tilt={-4}
+        focus="55% 32%"
+        className="my-16 max-w-[22rem]"
+      />
 
-      <div className="mx-auto mt-16 max-w-[34rem]">
+      <div className="mx-auto max-w-[34rem]">
         <h3 className="reveal font-display text-3xl tracking-[-0.015em]">
           Something to unwrap
         </h3>
@@ -81,22 +78,7 @@ export default function Gifts() {
           </p>
         </div>
 
-        <div className="mt-10 space-y-10">
-          {wishlist.map((group) => (
-            <div key={group.title} className="reveal">
-              <h4 className="font-display text-xl italic text-accent">
-                {group.title}
-              </h4>
-              <ul className="mt-3 border-b border-line text-[1.05rem]">
-                {group.items.map((item) => (
-                  <li key={item} className="border-t border-line py-2.5">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <Wishlist groups={groups} />
 
         <div className="story mt-10">
           <p className="reveal">
@@ -119,16 +101,11 @@ export default function Gifts() {
           </p>
         </div>
 
-        <div className="reveal mt-8 rounded-[1.75rem] bg-paper-deep p-6">
-          <p className="text-ink-soft">First Bank</p>
-          <p className="mt-1 font-display text-[2.4rem] leading-none tracking-[0.02em] tabular-nums select-all">
-            3238686897
-          </p>
-          <p className="mt-3 text-[1.05rem] leading-snug">
-            Nnanna-Jnr Okoro Enuma Ethelbert
-          </p>
-          <CopyButton value="3238686897" />
-        </div>
+        <CopyNumber
+          bank="First Bank"
+          number="3238686897"
+          name="Nnanna-Jnr Okoro Enuma Ethelbert"
+        />
 
         <p className="reveal mt-6 font-display text-lg italic text-ink-soft">
           Every gift, whether big or small, is deeply appreciated.

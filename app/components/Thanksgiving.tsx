@@ -1,14 +1,15 @@
-import Image from "next/image";
+import Print from "./Print";
+import Countdown from "./Countdown";
 import withTheBall from "../../public/E4.jpeg";
 
 const directions =
   "https://www.google.com/maps/search/?api=1&query=St.+Donald%27s+Catholic+Church%2C+Karu";
 
 const comeLines = [
-  { text: "Come as you are.", indent: "" },
-  { text: "Come with your prayers.", indent: "pl-6" },
-  { text: "Come with your love.", indent: "pl-12" },
-  { text: "Come celebrate our boy with us.", indent: "" },
+  "Come as you are.",
+  "Come with your prayers.",
+  "Come with your love.",
+  "Come celebrate our boy with us.",
 ];
 
 export default function Thanksgiving() {
@@ -43,8 +44,8 @@ export default function Thanksgiving() {
           </p>
         </div>
 
-        <div className="reveal mt-14 flex items-end gap-5">
-          <span className="font-display text-[8.5rem] leading-[0.75] font-[350] tracking-[-0.05em] text-accent tabular-nums">
+        <div className="fx-pop mt-14 flex origin-bottom-left items-end gap-5">
+          <span className="fx-breathe font-display text-[8.5rem] leading-[0.75] font-[350] tracking-[-0.05em] text-accent tabular-nums">
             4
           </span>
           <div className="pb-1 font-display text-2xl leading-tight">
@@ -52,7 +53,8 @@ export default function Thanksgiving() {
             <p>October 2026</p>
           </div>
         </div>
-        <p className="reveal mt-6 font-display text-[1.4rem] leading-snug">
+        <Countdown />
+        <p className="reveal mt-4 font-display text-[1.4rem] leading-snug">
           St. Donald’s Catholic Church, Karu
         </p>
 
@@ -60,7 +62,7 @@ export default function Thanksgiving() {
           <a
             href="/thanksgiving.ics"
             download="enuma-thanksgiving.ics"
-            className="flex h-12 items-center justify-center rounded-full bg-accent px-4 font-medium text-accent-ink transition-transform duration-200 ease-out hover:-translate-y-px active:scale-[0.97]"
+            className="flex h-12 items-center justify-center rounded-full bg-accent px-4 font-medium text-accent-ink transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 hover:-rotate-1 active:scale-[0.95]"
           >
             Add to calendar
           </a>
@@ -68,30 +70,29 @@ export default function Thanksgiving() {
             href={directions}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-12 items-center justify-center rounded-full px-4 font-medium ring-1 ring-line transition-[transform,background-color] duration-200 ease-out ring-inset hover:bg-paper active:scale-[0.97]"
+            className="flex h-12 items-center justify-center rounded-full px-4 font-medium ring-1 ring-line transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ring-inset hover:-translate-y-0.5 hover:rotate-1 active:scale-[0.95]"
           >
             Get directions
           </a>
         </div>
       </div>
 
-      <figure className="reveal mx-auto mt-16 max-w-[34rem]">
-        <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem]">
-          <Image
-            src={withTheBall}
-            alt="Enuma sitting on a wooden box holding a football, sunglasses on his head"
-            fill
-            placeholder="blur"
-            sizes="(min-width: 768px) 34rem, 92vw"
-            className="photo object-cover object-[45%_70%]"
-          />
-        </div>
-      </figure>
+      <Print
+        src={withTheBall}
+        alt="Enuma sitting on a wooden box holding a football, sunglasses on his head"
+        caption="Ready when you are."
+        tilt={4}
+        focus="45% 65%"
+        className="mt-16"
+      />
 
-      <div className="mx-auto mt-14 max-w-[34rem] font-display text-[1.75rem] leading-[1.3] italic">
-        {comeLines.map((line) => (
-          <p key={line.text} className={`reveal ${line.indent}`}>
-            {line.text}
+      <div className="mx-auto mt-16 max-w-[34rem] font-display text-[1.75rem] leading-[1.3] italic">
+        {comeLines.map((line, i) => (
+          <p
+            key={line}
+            className={i % 2 ? "fx-slide-right text-right" : "fx-slide-left"}
+          >
+            {line}
           </p>
         ))}
       </div>

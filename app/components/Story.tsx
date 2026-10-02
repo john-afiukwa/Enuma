@@ -1,6 +1,9 @@
-import Image from "next/image";
+import type { CSSProperties } from "react";
+import Print from "./Print";
 import onTheBox from "../../public/E2.jpeg";
 import crawling from "../../public/E3.jpeg";
+
+const quote = "We weren’t just watching him grow. He was growing us too.";
 
 const firsts = [
   "cry",
@@ -14,7 +17,7 @@ const firsts = [
 
 export default function Story() {
   return (
-    <section id="story" className="scroll-mt-4 px-6 pt-16 md:pt-32">
+    <section id="story" className="scroll-mt-4 px-6 pt-8 md:pt-32">
       <div className="mx-auto max-w-[34rem]">
         <p className="reveal font-display text-lg italic text-accent">
           His story
@@ -37,54 +40,28 @@ export default function Story() {
         </div>
       </div>
 
-      <figure className="reveal mt-14 ml-12 -mr-6 md:mx-auto md:max-w-[34rem]">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-l-[2rem] md:rounded-[2rem]">
-          <Image
-            src={onTheBox}
-            alt="Enuma sitting on a white box beside a lit-up “ONE” sign"
-            fill
-            placeholder="blur"
-            sizes="(min-width: 768px) 34rem, 90vw"
-            className="photo object-cover object-[30%_85%]"
-          />
-        </div>
-        <figcaption className="mt-3 pr-6 font-display text-[0.95rem] italic text-ink-soft">
-          Twelve months. 365 days of little milestones.
-        </figcaption>
-      </figure>
+      <Print
+        src={crawling}
+        alt="Enuma on the grass beside a football, looking up"
+        caption="Reaching for everything he wasn’t supposed to touch."
+        tilt={-5}
+        focus="40% 80%"
+        className="my-16"
+      />
 
-      <div className="story mx-auto mt-14 max-w-[34rem]">
-        <p className="reveal">
-          We watched him discover his hands. Then his feet. Then food… the most
-          amazing part. Every new food felt like a new discovery. His favourite
-          food changed every day. Then the fascinating concept of feeding
-          himself, and feeding another person.
-        </p>
-        <p className="reveal">
-          He learned to smile, laugh, sit, crawl, explore, reach for everything
-          he wasn’t supposed to touch and give us that innocent little face that
-          somehow makes all the mischief completely forgivable.
-        </p>
-      </div>
-
-      <figure className="reveal mt-14 mr-12 -ml-6 md:mx-auto md:max-w-[34rem]">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-r-[2rem] md:rounded-[2rem]">
-          <Image
-            src={crawling}
-            alt="Enuma on the grass beside a football, looking up"
-            fill
-            placeholder="blur"
-            sizes="(min-width: 768px) 34rem, 90vw"
-            className="photo object-cover object-[40%_80%]"
-          />
-        </div>
-        <figcaption className="mt-3 pl-6 font-display text-[0.95rem] italic text-ink-soft">
-          Reaching for everything he wasn’t supposed to touch.
-        </figcaption>
-      </figure>
-
-      <div className="mx-auto mt-14 max-w-[34rem]">
+      <div className="mx-auto max-w-[34rem]">
         <div className="story">
+          <p className="reveal">
+            We watched him discover his hands. Then his feet. Then food… the
+            most amazing part. Every new food felt like a new discovery. His
+            favourite food changed every day. Then the fascinating concept of
+            feeding himself, and feeding another person.
+          </p>
+          <p className="reveal">
+            He learned to smile, laugh, sit, crawl, explore, and give us that
+            innocent little face that somehow makes all the mischief completely
+            forgivable.
+          </p>
           <p className="reveal">
             We watched a tiny baby slowly become this curious, cheeky little boy
             with a personality of his own. And somewhere between the first bath
@@ -93,8 +70,20 @@ export default function Story() {
           </p>
         </div>
 
-        <blockquote className="reveal my-12 border-l-2 border-accent pl-5 font-display text-[2rem] leading-[1.15] italic tracking-[-0.015em] text-accent">
-          We weren’t just watching him grow. He was growing us too.
+        <blockquote
+          aria-label={quote}
+          className="fx-quote my-14 font-display text-[2.15rem] leading-[1.15] italic tracking-[-0.015em] text-accent"
+        >
+          {quote.split(" ").map((word, i) => (
+            <span
+              key={i}
+              aria-hidden
+              className="fx-word"
+              style={{ "--i": i } as CSSProperties}
+            >
+              {word}{" "}
+            </span>
+          ))}
         </blockquote>
 
         <div className="story">
@@ -103,15 +92,30 @@ export default function Story() {
             could exist in such small packages, and a kind of love that doesn’t
             really have adequate words.
           </p>
+        </div>
+      </div>
+
+      <Print
+        src={onTheBox}
+        alt="Enuma sitting on a white box beside a lit-up “ONE” sign"
+        caption="Twelve months. 365 days of little milestones."
+        tilt={6}
+        focus="32% 85%"
+        className="my-16"
+      />
+
+      <div className="mx-auto max-w-[34rem]">
+        <div className="story">
           <p className="reveal">
-            And now, somehow… Enuma is one. Twelve months. 365 days of little
-            milestones, big emotions, beautiful memories, answered prayers,
-            unexpected lessons and a whole lot of love. It feels like yesterday
-            we were holding him for the first time. And yet here we are,
-            planning his first birthday.
+            And now, somehow… Enuma is one. Big emotions, beautiful memories,
+            answered prayers, unexpected lessons and a whole lot of love. It
+            feels like yesterday we were holding him for the first time. And yet
+            here we are, planning his first birthday.
           </p>
         </div>
-        <p className="reveal mt-8 font-display text-4xl italic">Time, please.</p>
+        <p className="fx-stretch mt-10 font-display text-[2.6rem] whitespace-nowrap italic">
+          Time, please.
+        </p>
 
         <div className="story mt-24">
           <p className="reveal">
@@ -122,9 +126,11 @@ export default function Story() {
 
         <ol className="mt-8 border-b border-line font-display text-[1.65rem] leading-[1.2] tracking-[-0.01em]">
           {firsts.map((first) => (
-            <li key={first} className="reveal border-t border-line py-3.5">
-              <span className="text-ink-soft">The first </span>
-              {first}.
+            <li key={first} className="border-t border-line py-3.5">
+              <span className="fx-pop inline-block origin-left">
+                <span className="text-ink-soft">The first </span>
+                {first}.
+              </span>
             </li>
           ))}
         </ol>

@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 export default function Closing() {
   return (
     <section id="closing" className="px-6 pt-28">
@@ -18,8 +20,20 @@ export default function Closing() {
           </p>
         </div>
 
-        <h2 className="reveal mt-16 font-display text-[3.25rem] leading-[0.95] font-[420] tracking-[-0.035em] md:text-7xl">
-          Happy first birthday, <em className="text-accent">Enuma.</em>
+        <h2 className="fx-wave-line mt-16 font-display text-[3.25rem] leading-[0.95] font-[420] tracking-[-0.035em] md:text-7xl">
+          Happy first birthday,{" "}
+          <em aria-label="Enuma." className="inline-block text-accent">
+            {"Enuma.".split("").map((letter, i) => (
+              <span
+                key={i}
+                aria-hidden
+                className="fx-wave"
+                style={{ "--i": i } as CSSProperties}
+              >
+                {letter}
+              </span>
+            ))}
+          </em>
         </h2>
         <div className="story mt-8">
           <p className="reveal">
@@ -28,7 +42,7 @@ export default function Closing() {
           </p>
         </div>
 
-        <div className="reveal mt-16 rounded-[1.75rem] bg-paper-deep p-6 font-display text-[1.35rem] leading-[1.4]">
+        <div className="fx-pop mt-16 -rotate-1 rounded-[1.75rem] bg-paper-deep p-6 font-display text-[1.35rem] leading-[1.4]">
           <p>Come celebrate with us.</p>
           <p>Come with your love.</p>
           <p>Come with your thanksgiving.</p>
