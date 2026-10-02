@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <div
       id="animated-navbar"
-      className="bg-slate-100 fixed z-10 top-0 shadow-xl flex justify-between md:justify-around items-center md:py-3 w-full md:px-0 px-10"
+      className="text_blue bg-slate-100 fixed z-10 top-0 shadow-xl flex justify-between md:justify-around items-center md:py-3 w-full md:px-0 px-10"
     >
       <Link
         href={"#hero-section"}
@@ -69,7 +69,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="md:hidden cursor-pointer" onClick={() => setMenu()}>
+      <div className="md:hidden text_blue cursor-pointer" onClick={() => setMenu()}>
         {isMenu ? (
           <TbLetterX className="text-xl" />
         ) : (

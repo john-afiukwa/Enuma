@@ -2,18 +2,31 @@
 
 body {
   background: #eadfde;
-  color: #00638a;
+  color: #4d1a0b;
   font-family: "Courier New", Courier, monospace;
 }
 
+.text_blue {
+  color: #00638a;
+}
+.text_warm {
+  color: #a34f36;
+}
+.text_heading {
+  color: #4d1a0b;
+}
 .body_font {
   font-family:
     "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
     Arial, sans-serif;
 }
 
+.global_font {
+  font-family: "EB Garamond", "EB Garamond Fallback";
+}
+
 .gift_font {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .details_font {
@@ -25,7 +38,7 @@ body {
 }
 
 .nav_btn-menu {
-  @apply font-bold ;
+  @apply font-bold;
 }
 
 .photos {
