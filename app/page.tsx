@@ -1,30 +1,23 @@
-import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
+import Opening from "./components/Opening";
 import Story from "./components/Story";
-import Invitation from "./components/Invitation";
-import Gifting from "./components/Gifting";
-import Summary from "./components/Summary";
-import Footer from "./components/Footer";
+import Thanksgiving from "./components/Thanksgiving";
+import Gifts from "./components/Gifts";
+import Closing from "./components/Closing";
+import ChapterNav from "./components/ChapterNav";
+import ThemeSwitch from "./components/ThemeSwitch";
 
 export default function Home() {
   return (
     <>
-      <header>
-        <Navbar />
-
-        <Hero />
-      </header>
-      <div className="lg:mx-35 mx-15">
+      <main className="overflow-x-clip pb-28">
+        <Opening />
         <Story />
-        <hr />
-        <Invitation />
-        <hr />
-        <Gifting />
-        <hr />
-        <Summary />
-      </div>
-      <hr />
-      <Footer />
+        <Thanksgiving />
+        <Gifts />
+        <Closing />
+      </main>
+      <ChapterNav />
+      <ThemeSwitch />
     </>
   );
 }

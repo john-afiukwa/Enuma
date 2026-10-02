@@ -1,50 +1,150 @@
 @import "tailwindcss";
 
+:root {
+  --paper: #f8f1e8;
+  --paper-deep: #f0e3d3;
+  --ink: #2b1316;
+  --ink-soft: #6e4f49;
+  --accent: #7b2232;
+  --accent-ink: #fbf3ea;
+  --line: rgb(43 19 22 / 0.13);
+  --shadow: rgb(91 38 30 / 0.35);
+  --photo-filter: none;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1c1415;
+    --paper-deep: #281d1d;
+    --ink: #f4e8dd;
+    --ink-soft: #c3ada3;
+    --accent: #eb9a80;
+    --accent-ink: #2a1214;
+    --line: rgb(244 232 221 / 0.13);
+    --shadow: rgb(0 0 0 / 0.6);
+    --photo-filter: brightness(0.9) saturate(0.95);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #1c1415;
+  --paper-deep: #281d1d;
+  --ink: #f4e8dd;
+  --ink-soft: #c3ada3;
+  --accent: #eb9a80;
+  --accent-ink: #2a1214;
+  --line: rgb(244 232 221 / 0.13);
+  --shadow: rgb(0 0 0 / 0.6);
+  --photo-filter: brightness(0.9) saturate(0.95);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-line: var(--line);
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-instrument), system-ui, sans-serif;
+}
+
+html {
+  background: var(--paper);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
-  background: #eadfde;
-  color: #4d1a0b;
-  font-family: "Courier New", Courier, monospace;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
 }
 
-.text_blue {
-  color: #00638a;
-}
-.text_warm {
-  color: #a34f36;
-}
-.text_heading {
-  color: #4d1a0b;
-}
-.body_font {
-  font-family:
-    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
-    Arial, sans-serif;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.global_font {
-  font-family: "EB Garamond", "EB Garamond Fallback";
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
-.gift_font {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+p,
+li {
+  text-wrap: pretty;
 }
 
-.details_font {
-  font-family: Georgia, "Times New Roman", Times, serif;
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
-.nav_btn {
-  @apply p-1 px-3 font-bold;
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
-.nav_btn-menu {
-  @apply font-bold;
+.story {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  line-height: 1.7;
 }
 
-.photos {
-  @apply w-80 rounded-2xl;
+.story > p + p {
+  margin-top: 1.1em;
 }
 
-.flex_it {
-  @apply flex flex-col items-center justify-center;
+.photo {
+  filter: var(--photo-filter);
+}
+
+.hero-fade {
+  mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 86%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .hero-fade {
+    mask-image: none;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .enter {
+    animation: rise 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
 }

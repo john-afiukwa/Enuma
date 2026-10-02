@@ -1,29 +1,42 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["SOFT", "WONK", "opsz"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrument = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "ENUMA IS ONE",
-  description: "The high chief himself clocks 1"
+  title: "Enuma is one",
+  description:
+    "One year of tiny hands, big laughs and answered prayers. Join us to give thanks on Sunday, 4 October 2026.",
 };
+
+export const viewport: Viewport = {
+  themeColor: "#1c1415",
+};
+
+const themeScript = `var t="dark";try{t=localStorage.getItem("theme")||t}catch(e){}if(t!=="system")document.documentElement.dataset.theme=t==="light"?"light":"dark"`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${fraunces.variable} ${instrument.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
